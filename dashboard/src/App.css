@@ -1,0 +1,223 @@
+/* --- Base / layout --- */
+:root{
+  --bg: #f7f8fb;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --accent: #2563eb;
+  --danger: #ef4444;
+  --border: #e6e9ef;
+  --radius: 8px;
+  --shadow: 0 6px 18px rgba(23, 23, 23, 0.06);
+  --gap: 16px;
+  --max-width: 1100px;
+}
+
+* { box-sizing: border-box; }
+html,body,#root { height: 100%; margin: 0; font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif; background: var(--bg); color: #111827; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+
+.container{
+  max-width: var(--max-width);
+  margin: 28px auto;
+  padding: 20px;
+ 
+
+}
+/* Header */ 
+h1{
+  margin: 0 0 16px 0;
+  font-size: 1.6rem;
+  letter-spacing: -0.2px;
+  text-align: center;
+color:green;
+}
+
+/* Card-like layout around controls + form + table */
+.panel{
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+/* Small util */
+.error{
+  background: rgba(239,68,68,0.08);
+  color: var(--danger);
+  padding: 10px 12px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+}
+
+/* --- Controls row (search + per-page + add button) --- */
+.controls{
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.controls input[type="text"]{
+  flex: 1 1 260px;
+  min-width: 160px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+  font-size: 0.95rem;
+  background: #fff;
+}
+.controls input[type="text"]:focus{ box-shadow: 0 0 0 3px rgba(37,99,235,0.08); border-color: rgba(37,99,235,0.3); }
+
+.controls select{
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #fff;
+  font-size: 0.95rem;
+}
+
+/* --- Form --- */
+.user-form{
+  display: grid;
+  grid-template-columns: 1fr 1fr 220px auto;
+  gap: 12px;
+  align-items: center;
+  margin: 14px 0 18px 0;
+}
+
+.user-form input[type="text"],
+.user-form input[type="email"]{
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 0.95rem;
+  background: #fff;
+}
+
+.user-form button{
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* primary / update */
+.user-form button[type="submit"]{
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(37,99,235,0.16);
+}
+
+/* cancel */
+.user-form button[type="button"]{
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+
+/* make inputs full width of cell */
+.user-form input, .user-form select { width: 100%; }
+
+/* --- Table --- */
+.user-table{
+  width: 100%;
+  border-collapse: collapse;
+
+  background: var(--card);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  box-shadow: none;
+}
+
+.user-table thead{
+  background: #fafafa;
+  border-bottom: 1px solid var(--border);
+}
+
+.user-table th, .user-table td{
+  padding: 12px 14px;
+  text-align: left;
+  font-size: 0.95rem;
+  border-bottom: 1px solid #f1f4f8;
+}
+
+.user-table th{
+  font-weight: 600;
+  color: var(--muted);
+  font-size: 0.88rem;
+  letter-spacing: 0.2px;
+}
+
+/* rows */
+.user-table tbody tr:hover{ background: #fcfdff; }
+
+.user-table td button{
+  margin-right: 8px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: #fff;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.user-table td button:first-child{ background: #f8fafc; }
+.user-table td button:last-child{ background: #fff0f0; border-color: rgba(239,68,68,0.12); color: var(--danger); }
+
+/* small note if department missing */
+.user-table td .muted { color: var(--muted); font-size: 0.9rem; }
+
+/* --- Pagination --- */
+.pagination{
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.pagination button{
+  padding: 8px 12px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.pagination button.active{
+  background: var(--accent);
+  color: #fff;
+  border-color: rgba(37,99,235,0.9);
+  box-shadow: 0 6px 12px rgba(37,99,235,0.12);
+}
+
+/* --- Responsive adjustments --- */
+@media (max-width: 880px){
+  .user-form{
+    grid-template-columns: 1fr;
+  }
+  .controls{
+    justify-content: space-between;
+  }
+  .controls input[type="text"]{ flex: 1 1 140px; }
+  .user-table th, .user-table td { padding: 10px; font-size: 0.9rem; }
+}
+
+/* For very small screens, make the table horizontally scrollable */
+@media (max-width: 520px){
+  .container{ padding: 12px; }
+  .panel{ padding: 12px; }
+  .user-table{ display: block; width: 100%; overflow-x: auto; white-space: nowrap; }
+  .user-table thead { display: table-header-group; }
+}
+
+/* small helpers */
+.small { font-size: 0.85rem; color: var(--muted); }
+.center { text-align: center; }
